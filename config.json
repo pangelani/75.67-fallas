@@ -1,0 +1,10 @@
+{
+    "port" : 8080,
+    "mongoose": {
+        "uri": "mongodb://localhost/tp-fallas",
+        "port": 27017
+    },
+    "log": {
+        "level" : "debug"
+    }
+}

@@ -1,0 +1,21 @@
+!!! 5
+html
+	block vars
+	head
+		title #{pageTitle}
+		link(rel='stylesheet', href='/vendor/bootstrap/css/bootstrap.min.css')
+		script(type='text/javascript', src='/vendor/bootstrap/js/bootstrap.min.css')
+		block head
+	body
+		div.navbar.navbar-default.navbar-static-top
+			div.container
+				div.navbar-header
+					ul#global-nav.nav.pull-left
+						a(href='#').navbar-brand #{appName}
+					button.navbar-toggle(data-toggle="collapse", data-target="#navbar-main")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+		div.container
+			block content
+		block scripts

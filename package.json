@@ -1,0 +1,35 @@
+{
+  "name": "TP-75.67",
+  "version": "0.1.0",
+  "author": "Angelani, Bosch, Musumeci",
+  "description": "Trabajo Práctico 75.67 - Sistemas Automáticos de Diagnóstico y Detección de Fallas I",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "dependencies": {
+    "express": "3.3.x",
+    "stylus": "0.31.0",
+    "jade": "0.27.7",
+    "mongoose": "3.6.x",
+    "moment": "1.7.2",
+    "nconf": "0.6.x",
+    "winston": "0.7.x",
+    "faker": "1.x.x",
+    "connect-ensure-login": "0.1.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-concurrent": "^0.5.0",
+    "grunt-nodemon": "^0.2.1",
+    "grunt-express": "~1.3.5"
+  },
+  "engines": {
+    "node": "0.8.14",
+    "npm": "1.1.65"
+  },
+  "license": "MIT"
+}
+
