@@ -16,7 +16,8 @@
     "nconf": "0.6.x",
     "winston": "0.7.x",
     "faker": "1.x.x",
-    "connect-ensure-login": "0.1.x"
+    "connect-ensure-login": "0.1.x",
+	"nools" : "*"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
