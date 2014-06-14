@@ -1,4 +1,31 @@
 extends ../layout
 
 block content
-	h1 hola!
+    .jumbotron
+        .container(style="text-align: center;")
+            h1 Test Vocacional
+            p
+              | Presentamos un sistema experto cuyo objetivo es determinar la finidad de una persona a una carrera determinada de acuerdo a sus aptitudes.
+    .container
+        .row(style="text-align: center;")
+            .col-lg-4
+                img.img-circle(src='/images/angelani.jpg')
+                h2 Pablo Angelani
+                p
+                    | <b> 92707 </b>
+                p
+                    | <b> pablo.angelani@gmail.com </b>
+            .col-lg-4
+                img.img-circle(src='',data-src="holder.js/150x150")
+                h2 Florencia Bosch
+                p
+                    | <b> 91867 </b>
+                p
+                    | <b> florbosch128@gmail.com </b>
+            .col-lg-4
+                img.img-circle(src='/images/musumeci.jpg')
+                h2 Pablo Musumeci
+                p
+                    | <b> 92165 </b>
+                p
+                    | <b> pablomusumeci@yahoo.com.ar </b>

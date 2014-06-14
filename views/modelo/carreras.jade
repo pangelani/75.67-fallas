@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+    br
+    h3 Carreras
+    - for (var i = 0; i < carreras.length; i++)
+        h4= carreras[i].nombre
+        p= carreras[i].descripcion

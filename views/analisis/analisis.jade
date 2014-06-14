@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    br
+    h3 #{pregunta.pregunta}
+    form(role="form", method="post")
+        input(type="hidden", name="pregunta", value="#{pregunta.id}")
+        - for (var i = 0; i < pregunta.respuestas.length; i++)
+            .form-group
+                input(type="radio", name="respuesta", value="#{i}", id="respuesta_#{i}", required)
+                label(for="respuesta_#{i}") #{pregunta.respuestas[i]}
+        button.btn.btn-lg.btn-success Siguiente

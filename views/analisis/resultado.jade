@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+    br
+    - if (!resultado)
+        h3 PIEDRA! => a la UADE
+    - else
+        h3 #{resultado}

@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    br
+    h3 Preguntas
+    ul
+    - for (var i = 0; i < preguntas.length; i++)
+        li
+            h4= preguntas[i].pregunta
+            ol
+                - for (var j = 0; j < preguntas[i].respuestas.length; j++)
+                    li= preguntas[i].respuestas[j]
