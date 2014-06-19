@@ -1,10 +1,16 @@
 module.exports = function(app, log) {
     var Pregunta = require("../models/modelo");
+    var TestModel = require("../models/modelo").TestModel;
     var preguntasCount = require("../models/modelo").preguntasCount;
     var Carreras = require("../models/modelo").Carreras;
     var Preguntas = require("../models/modelo").Preguntas;
     var nools = require("nools");
-    var test = {};
+    var flow = nools.compile("flow/basic.nools", {
+        scope: {
+            logger: log
+        }
+    });
+    var Test = flow.getDefined("test");
 
     app.get('/', function(req, res){
         res.render('home/home', {
@@ -30,11 +36,7 @@ module.exports = function(app, log) {
     });
 
     app.get('/comenzar', function(req, res){
-        test = {
-            preguntas : [],
-            posiblesCarreras : Carreras.slice(0),
-            resultado: undefined,
-        };
+        req.session.test = new TestModel();
         res.render('analisis/comenzar', {
             appName     : "75.67",
             pageTitle   : "75.67 - Sistemas Automáticos de Diagnóstico y Detección de Fallas I"
@@ -43,7 +45,6 @@ module.exports = function(app, log) {
 
     app.get('/analisis', function(req, res){
         var pregunta = new Pregunta(0);
-        test.preguntas.push(pregunta);
         res.render('analisis/analisis', {
             appName     : "75.67",
             pageTitle   : "75.67 - Análisis",
@@ -51,33 +52,53 @@ module.exports = function(app, log) {
         });
     });
 
-
     app.post('/analisis', function(req, res){
-        var pregunta = test.preguntas[req.body.pregunta];
+        var pregunta = new Pregunta(req.body.pregunta);
         pregunta.responder(req.body.respuesta);
-        ejecutarReglas();
-        var siguiente = pregunta.siguiente();
-        if (siguiente) {
-            test.preguntas.push(siguiente);
-            res.render('analisis/analisis', {
-                appName     : "75.67",
-                pageTitle   : "75.67 - Análisis",
-                pregunta    : siguiente
-            });
-        } else {
-            res.redirect("/resultado");
-        }
+        ejecutarReglas(req, res, pregunta);
     });
 
     app.get('/resultado', function(req, res){
         res.render('analisis/resultado', {
             appName     : "75.67",
             pageTitle   : "75.67 - Resultado",
-            resultado   : test.resultado
+            resultado   : req.session.test.posiblesCarreras
         });
     });
-};
 
-function ejecutarReglas () {
-    //TODO applicar nools
-}
+    function ejecutarReglas (req, res, pregunta) {
+        var currTest = req.session.test;
+        currTest.preguntas[pregunta.id] = pregunta;
+        currTest.posiblesCarreras = [];
+        session = flow.getSession(new Test({
+            CLM : currTest.preguntas[0] ? currTest.preguntas[0].respuesta : null,
+            F   : currTest.preguntas[1] ? currTest.preguntas[1].respuesta : null,
+            C   : currTest.preguntas[2] ? currTest.preguntas[2].respuesta : null,
+            IT  : currTest.preguntas[3] ? currTest.preguntas[3].respuesta : null,
+            TW  : currTest.preguntas[4] ? currTest.preguntas[4].respuesta : null,
+            CA  : currTest.preguntas[5] ? currTest.preguntas[5].respuesta : null,
+            AM  : currTest.preguntas[6] ? currTest.preguntas[6].respuesta : null
+        }));
+        session.on('courseOfStudies', function(resultado) {
+            currTest.posiblesCarreras.push(Carreras[resultado]);
+        }).match(function(err){
+            if(err){
+                currTest.posiblesCarreras = [];
+                log.error(err);
+            }
+        }).then(function() {
+            req.session.test = currTest;
+            var siguiente = pregunta.siguiente();
+            if (siguiente && currTest.posiblesCarreras.length) {
+                res.render('analisis/analisis', {
+                    appName     : "75.67",
+                    pageTitle   : "75.67 - Análisis",
+                    pregunta    : siguiente
+                });
+            } else {
+                res.redirect("/resultado");
+            }
+        });
+    }
+
+};

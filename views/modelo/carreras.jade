@@ -1,8 +1,12 @@
 extends ../layout
 
 block content
-    br
-    h3 Carreras
-    - for (var i = 0; i < carreras.length; i++)
-        h4= carreras[i].nombre
-        p= carreras[i].descripcion
+    .page-header
+        h2 Carreras
+    .col-md-11.col-centered
+        - for (var i = 0; i < carreras.length; i++)
+            .list-group(id = "carrera_#{i}")
+                .list-group-item
+                    h4.list-group-item-heading= carreras[i].nombre
+                    <br>
+                    p.list-group-item-text !{carreras[i].descripcion}

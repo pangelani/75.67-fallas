@@ -1,12 +1,15 @@
 extends ../layout
 
 block content
-    br
-    h3 Preguntas
-    ul
-    - for (var i = 0; i < preguntas.length; i++)
-        li
-            h4= preguntas[i].pregunta
-            ol
-                - for (var j = 0; j < preguntas[i].respuestas.length; j++)
-                    li= preguntas[i].respuestas[j]
+    .page-header
+        h2 Preguntas
+    .col-md-11.col-centered
+        - for (var i = 0; i < preguntas.length; i++)
+            .list-group
+                .list-group-item
+                    h4.list-group-item-heading(id = "preguntas_#{i}")= preguntas[i].pregunta
+                    <br>
+                    p.list-group-item-text
+                        ol
+                            - for (var j = 0; j < preguntas[i].respuestas.length; j++)
+                                li= preguntas[i].respuestas[j]

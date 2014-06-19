@@ -1,45 +1,57 @@
-define Question {
-    value: -1
+define Test {
+    CLM : null,
+    F : null,
+    C : null,
+    IT : null,
+    TW : null,
+    CA : null,
+    AM : null
 }
 
-define NextQuestion {
-    value : -1
-}
-
-rule AtoB {
+rule LicMatematica {
     when {
-        q : Question q.value == 1;
-        r : Result;
-    }
-    then {
-        assert(new Fibonacci({sequence : f1.sequence - 1}));
+        p : Test (p.CLM >= 4 || p.CLM == null) && (p.F >= 3 || p.F == null) && (p.C >= 2 || p.C == null) && (p.IT >= 0 || p.IT == null) && (p.TW >= 1 || p.TW == null) && (p.CA >= 3 || p.CA == null) && (p.AM >= 4 || p.AM == null);
+    } then {
+        emit("courseOfStudies", 0);
     }
 }
 
-rule Bootstrap {
-   when {
-       f : Fibonacci f.value == -1 && (f.sequence == 1 || f.sequence == 2);
-   }
-   then{
-       modify(f, function(){
-           this.value = 1;
-       });
-   }
-}
-
-rule Calculate {
+rule LicFisica {
     when {
-        f1 : Fibonacci f1.value != -1 {sequence : s1};
-        //here we define constraints along with a hash so you can reference sequence
-        //as s2 else where
-        f2 : Fibonacci f2.value != -1 && f2.sequence == s1 + 1 {sequence:s2};
-        f3 : Fibonacci f3.value == -1 && f3.sequence == s2 + 1;
-        r : Result
+        p : Test (p.CLM >= 3 || p.CLM == null) && (p.F >= 3 || p.F == null) && (p.C >= 2 || p.C == null) && (p.IT >= 2 || p.IT == null) && (p.TW >= 1 || p.TW == null) && (p.CA >= 4 || p.CA == null) && (p.AM >= 3 || p.AM == null);
+    } then {
+        emit("courseOfStudies", 1);
     }
-    then {
-        modify(f3, function(){
-            this.value = r.result = f1.value + f2.value;
-        });
-        retract(f1);
+}
+
+rule LicQuimica {
+    when {
+        p : Test (p.CLM >= 1 || p.CLM == null) && (p.F >= 2 || p.F == null) && (p.C >= 0 || p.C == null) && (p.IT >= 1 || p.IT == null) && (p.TW >= 3 || p.TW == null) && (p.CA >= 2 || p.CA == null) && (p.AM >= 4 || p.AM == null);
+    } then {
+        emit("courseOfStudies", 2);
+    }
+}
+
+rule LicComputacion {
+    when {
+        p : Test (p.CLM >= 1 || p.CLM == null) && (p.F >= 2 || p.F == null) && (p.C >= 4 || p.C == null) && (p.IT >= 4 || p.IT == null) && (p.TW >= 0 || p.TW == null) && (p.CA >= 1 || p.CA == null) && (p.AM >= 4 || p.AM == null);
+    } then {
+        emit("courseOfStudies", 3);
+    }
+}
+
+rule IngCivil {
+    when {
+        p : Test (p.CLM >= 1 || p.CLM == null) && (p.F >= 4 || p.F == null) && (p.C >= 0 || p.C == null) && (p.IT >= 1 || p.IT == null) && (p.TW >= 2 || p.TW == null) && (p.CA >= 4 || p.CA == null) && (p.AM >= 1 || p.AM == null);
+    } then {
+        emit("courseOfStudies", 4);
+    }
+}
+
+rule IngElectronica {
+    when {
+        p : Test (p.CLM >= 2 || p.CLM == null) && (p.F >= 2 || p.F == null) && (p.C >= 1 || p.C == null) && (p.IT >= 3 || p.IT == null) && (p.TW >= 3 || p.TW == null) && (p.CA >= 1 || p.CA == null) && (p.AM >= 2 || p.AM == null);
+    } then {
+        emit("courseOfStudies", 5);
     }
 }
