@@ -1,57 +1,318 @@
-define Test {
-    CLM : null,
-    F : null,
-    C : null,
-    IT : null,
-    TW : null,
-    CA : null,
-    AM : null
+define Question {
+    id : null,
+    ans : null
 }
 
-rule LicMatematica {
+// 1era Pregunta
+rule Q1A1 {
     when {
-        p : Test (p.CLM >= 4 || p.CLM == null) && (p.F >= 3 || p.F == null) && (p.C >= 2 || p.C == null) && (p.IT >= 0 || p.IT == null) && (p.TW >= 1 || p.TW == null) && (p.CA >= 3 || p.CA == null) && (p.AM >= 4 || p.AM == null);
+        q: Question (q.id == 0 && q.ans == 1);
     } then {
-        emit("courseOfStudies", 0);
+        emit("respuesta", 4); // Ing. Civil
     }
 }
 
-rule LicFisica {
+rule Q1A2 {
     when {
-        p : Test (p.CLM >= 3 || p.CLM == null) && (p.F >= 3 || p.F == null) && (p.C >= 2 || p.C == null) && (p.IT >= 2 || p.IT == null) && (p.TW >= 1 || p.TW == null) && (p.CA >= 4 || p.CA == null) && (p.AM >= 3 || p.AM == null);
+        q: Question (q.id == 0 && q.ans == 2);
     } then {
-        emit("courseOfStudies", 1);
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 4); // Ing. Civil
     }
 }
 
-rule LicQuimica {
+rule Q1A3 {
     when {
-        p : Test (p.CLM >= 1 || p.CLM == null) && (p.F >= 2 || p.F == null) && (p.C >= 0 || p.C == null) && (p.IT >= 1 || p.IT == null) && (p.TW >= 3 || p.TW == null) && (p.CA >= 2 || p.CA == null) && (p.AM >= 4 || p.AM == null);
+        q: Question (q.id == 0 && q.ans == 3);
     } then {
-        emit("courseOfStudies", 2);
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
     }
 }
 
-rule LicComputacion {
+rule Q1A4 {
     when {
-        p : Test (p.CLM >= 1 || p.CLM == null) && (p.F >= 2 || p.F == null) && (p.C >= 4 || p.C == null) && (p.IT >= 4 || p.IT == null) && (p.TW >= 0 || p.TW == null) && (p.CA >= 1 || p.CA == null) && (p.AM >= 4 || p.AM == null);
+        q: Question (q.id == 0 && q.ans == 4);
     } then {
-        emit("courseOfStudies", 3);
+        emit("respuesta", 1); // Lic. en Fisica
+        emit("respuesta", 2); // Lic. en Quimica
     }
 }
 
-rule IngCivil {
+rule Q1A5 {
     when {
-        p : Test (p.CLM >= 1 || p.CLM == null) && (p.F >= 4 || p.F == null) && (p.C >= 0 || p.C == null) && (p.IT >= 1 || p.IT == null) && (p.TW >= 2 || p.TW == null) && (p.CA >= 4 || p.CA == null) && (p.AM >= 1 || p.AM == null);
+        q: Question (q.id == 0 && q.ans == 5);
     } then {
-        emit("courseOfStudies", 4);
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 1); // Lic. en Fisica
     }
 }
 
-rule IngElectronica {
+// 2da PREGUNTA
+rule Q2A1 {
     when {
-        p : Test (p.CLM >= 2 || p.CLM == null) && (p.F >= 2 || p.F == null) && (p.C >= 1 || p.C == null) && (p.IT >= 3 || p.IT == null) && (p.TW >= 3 || p.TW == null) && (p.CA >= 1 || p.CA == null) && (p.AM >= 2 || p.AM == null);
+        q: Question (q.id == 1 && q.ans == 1);
     } then {
-        emit("courseOfStudies", 5);
+        emit("respuesta", 0); // Lic. en Matematica
+    }
+}
+
+rule Q2A2 {
+    when {
+        q: Question (q.id == 1 && q.ans == 2);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+    }
+}
+
+rule Q2A3 {
+    when {
+        q: Question (q.id == 1 && q.ans == 3);
+    } then {
+        emit("respuesta", 2);
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q2A4 {
+    when {
+        q: Question (q.id == 1 && q.ans == 4);
+    } then {
+        emit("respuesta", 1); // Lic. en Fisica
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+rule Q2A5 {
+    when {
+        q: Question (q.id == 1 && q.ans == 5);
+    } then {
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+// 3ra PREGUNTA
+rule Q3A1 {
+    when {
+        q: Question (q.id == 2 && q.ans == 1);
+    } then {
+        emit("respuesta", 2);
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+rule Q3A2 {
+    when {
+        q: Question (q.id == 2 && q.ans == 2);
+    } then {
+        emit("respuesta", 2);
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q3A3 {
+    when {
+        q: Question (q.id == 2 && q.ans == 3);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 1); // Lic. en Fisica
+    }
+}
+
+rule Q3A4 {
+    when {
+        q: Question (q.id == 2 && q.ans == 4);
+    } then {
+    }
+}
+
+rule Q3A5 {
+    when {
+        q: Question (q.id == 2 && q.ans == 5);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+    }
+}
+
+// 4ta PREGUNTA
+rule Q4A1 {
+    when {
+        q: Question (q.id == 3 && q.ans == 1);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 1); // Lic. en Fisica
+    }
+}
+
+rule Q4A2 {
+    when {
+        q: Question (q.id == 3 && q.ans == 2);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 2);
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+rule Q4A3 {
+    when {
+        q: Question (q.id == 3 && q.ans == 3);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 1); // Lic. en Fisica
+    }
+}
+
+rule Q4A4 {
+    when {
+        q: Question (q.id == 3 && q.ans == 4);
+    } then {
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q4A5 {
+    when {
+        q: Question (q.id == 3 && q.ans == 5);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+// 5ta PREGUNTA
+rule Q5A1 {
+    when {
+        q: Question (q.id == 4 && q.ans == 1);
+    } then {
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+rule Q5A2 {
+    when {
+        q: Question (q.id == 4 && q.ans == 2);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 4); // Ing. Civil
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q5A3 {
+    when {
+        q: Question (q.id == 4 && q.ans == 3);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+    }
+}
+
+rule Q5A4 {
+    when {
+        q: Question (q.id == 4 && q.ans == 4);
+    } then {
+        emit("respuesta", 1); // Lic. en Fisica
+    }
+}
+
+rule Q5A5 {
+    when {
+        q: Question (q.id == 4 && q.ans == 5);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+    }
+}
+
+// 6ta PREGUNTA
+rule Q6A1 {
+    when {
+        q: Question (q.id == 5 && q.ans == 1);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q6A2 {
+    when {
+        q: Question (q.id == 5 && q.ans == 2);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q6A3 {
+    when {
+        q: Question (q.id == 5 && q.ans == 3);
+    } then {
+        emit("respuesta", 2);
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 4); // Ing. Civil
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q6A4 {
+    when {
+        q: Question (q.id == 5 && q.ans == 4);
+    } then {
+        emit("respuesta", 1); // Lic. en Fisica
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+rule Q6A5 {
+    when {
+        q: Question (q.id == 5 && q.ans == 5);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+    }
+}
+
+// 7ta PREGUNTA
+rule Q7A1 {
+    when {
+        q: Question (q.id == 6 && q.ans == 1);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q7A2 {
+    when {
+        q: Question (q.id == 6 && q.ans == 2);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 4); // Ing. Civil
+    }
+}
+
+rule Q7A3 {
+    when {
+        q: Question (q.id == 6 && q.ans == 3);
+    } then {
+        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("respuesta", 5); // Ing. Electronica
+    }
+}
+
+rule Q7A4 {
+    when {
+        q: Question (q.id == 6 && q.ans == 4);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 1); // Lic. en Fisica
+    }
+}
+
+rule Q7A5 {
+    when {
+        q: Question (q.id == 6 && q.ans == 5);
+    } then {
+        emit("respuesta", 0); // Lic. en Matematica
+        emit("respuesta", 1); // Lic. en Fisica
     }
 }

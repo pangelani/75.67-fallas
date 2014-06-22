@@ -116,7 +116,7 @@ Pregunta.prototype.siguiente = function() {
 
 function TestModel() {
     this.preguntas = new Array(6);
-    this.posiblesCarreras = [];
+    this.posiblesCarreras = carreras.splice(0);
     this.resultado = undefined;
 }
 

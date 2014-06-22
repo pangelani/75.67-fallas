@@ -10,7 +10,7 @@ module.exports = function(app, log) {
             logger: log
         }
     });
-    var Test = flow.getDefined("test");
+    var Question = flow.getDefined("question");
 
     app.get('/', function(req, res){
         res.render('home/home', {
@@ -59,40 +59,54 @@ module.exports = function(app, log) {
     });
 
     app.get('/resultado', function(req, res){
+        var posiblesCarreras = [];
+        log.debug("resultado");
+        for (var i = 0; i < req.session.test.posiblesCarreras.length; i++) {
+            if (req.session.test.posiblesCarreras[i]) {
+                posiblesCarreras.push(req.session.test.posiblesCarreras[i]);
+            }
+        }
         res.render('analisis/resultado', {
             appName     : "75.67",
             pageTitle   : "75.67 - Resultado",
-            resultado   : req.session.test.posiblesCarreras
+            resultado   : posiblesCarreras
         });
     });
 
     function ejecutarReglas (req, res, pregunta) {
         var currTest = req.session.test;
         currTest.preguntas[pregunta.id] = pregunta;
-        currTest.posiblesCarreras = [];
-        session = flow.getSession(new Test({
-            CLM : currTest.preguntas[0] ? currTest.preguntas[0].respuesta : null,
-            F   : currTest.preguntas[1] ? currTest.preguntas[1].respuesta : null,
-            C   : currTest.preguntas[2] ? currTest.preguntas[2].respuesta : null,
-            IT  : currTest.preguntas[3] ? currTest.preguntas[3].respuesta : null,
-            TW  : currTest.preguntas[4] ? currTest.preguntas[4].respuesta : null,
-            CA  : currTest.preguntas[5] ? currTest.preguntas[5].respuesta : null,
-            AM  : currTest.preguntas[6] ? currTest.preguntas[6].respuesta : null
+        session = flow.getSession(new Question({
+            id : pregunta.id,
+            ans : pregunta.respuesta
         }));
-        session.on('courseOfStudies', function(resultado) {
-            currTest.posiblesCarreras.push(Carreras[resultado]);
+        session.on('respuesta', function(carrera) {
+            if (currTest.posiblesCarreras[carrera]) {
+                currTest.posiblesCarreras[carrera].dejar = true;
+            }
         }).match(function(err){
             if(err){
                 currTest.posiblesCarreras = [];
                 log.error(err);
             }
         }).then(function() {
+            var hayPosibles = false;
+            for (var i = 0; i < currTest.posiblesCarreras.length; i++) {
+                if (currTest.posiblesCarreras[i]) {
+                    if (!currTest.posiblesCarreras[i].dejar) {
+                        currTest.posiblesCarreras[i] = null;
+                    } else {
+                        currTest.posiblesCarreras[i].dejar = false;
+                        hayPosibles = true;
+                    }
+                }
+            }
             req.session.test = currTest;
             var siguiente = pregunta.siguiente();
-            if (siguiente && currTest.posiblesCarreras.length) {
+            if (siguiente && hayPosibles) {
                 res.render('analisis/analisis', {
                     appName     : "75.67",
-                    pageTitle   : "75.67 - Análisis",
+                    pageTitle   : "75.67 - Hacer test",
                     pregunta    : siguiente
                 });
             } else {
