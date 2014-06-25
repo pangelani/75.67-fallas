@@ -8,7 +8,12 @@ rule Q1A1 {
     when {
         q: Question (q.id == 0 && q.ans == 1);
     } then {
-        emit("respuesta", 4); // Ing. Civil
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("restar", 2); // Lic. en Quimica
+        emit("restar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
+        emit("restar", 5); // Ing. Electronica
     }
 }
 
@@ -16,8 +21,10 @@ rule Q1A2 {
     when {
         q: Question (q.id == 0 && q.ans == 2);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 4); // Ing. Civil
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("sumar", 4); // Ing. Civil
+        emit("restar", 5); // Ing. Electronica
     }
 }
 
@@ -25,8 +32,11 @@ rule Q1A3 {
     when {
         q: Question (q.id == 0 && q.ans == 3);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("restar", 0); // Lic. en Matematica
+        emit("restar", 1); // Lic. en Fisica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 5); // Ing. Electronica
+
     }
 }
 
@@ -34,8 +44,11 @@ rule Q1A4 {
     when {
         q: Question (q.id == 0 && q.ans == 4);
     } then {
-        emit("respuesta", 1); // Lic. en Fisica
-        emit("respuesta", 2); // Lic. en Quimica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sumar", 2); // Lic. en Quimica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
     }
 }
 
@@ -43,8 +56,8 @@ rule Q1A5 {
     when {
         q: Question (q.id == 0 && q.ans == 5);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
     }
 }
 
@@ -53,7 +66,9 @@ rule Q2A1 {
     when {
         q: Question (q.id == 1 && q.ans == 1);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("saca", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
     }
 }
 
@@ -61,7 +76,9 @@ rule Q2A2 {
     when {
         q: Question (q.id == 1 && q.ans == 2);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("resta", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
     }
 }
 
@@ -69,9 +86,10 @@ rule Q2A3 {
     when {
         q: Question (q.id == 1 && q.ans == 3);
     } then {
-        emit("respuesta", 2);
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("resta", 0); // Lic. en Matematica
+        emit("sumar", 2); // Lic. en Quimica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -79,8 +97,11 @@ rule Q2A4 {
     when {
         q: Question (q.id == 1 && q.ans == 4);
     } then {
-        emit("respuesta", 1); // Lic. en Fisica
-        emit("respuesta", 4); // Ing. Civil
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -88,7 +109,8 @@ rule Q2A5 {
     when {
         q: Question (q.id == 1 && q.ans == 5);
     } then {
-        emit("respuesta", 4); // Ing. Civil
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
     }
 }
 
@@ -97,8 +119,10 @@ rule Q3A1 {
     when {
         q: Question (q.id == 2 && q.ans == 1);
     } then {
-        emit("respuesta", 2);
-        emit("respuesta", 4); // Ing. Civil
+        emit("sumar", 2); // Lic. en Quimica
+        emit("sacar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
+        emit("sacar", 5); // Ing. Electronica
     }
 }
 
@@ -106,8 +130,10 @@ rule Q3A2 {
     when {
         q: Question (q.id == 2 && q.ans == 2);
     } then {
-        emit("respuesta", 2);
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sumar", 2); // Lic. en Quimica
+        emit("sacar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
+        emit("resta", 5); // Ing. Electronica
     }
 }
 
@@ -115,8 +141,9 @@ rule Q3A3 {
     when {
         q: Question (q.id == 2 && q.ans == 3);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("resta", 3); // Lic. en Ciencias de la Computacion
     }
 }
 
@@ -124,6 +151,7 @@ rule Q3A4 {
     when {
         q: Question (q.id == 2 && q.ans == 4);
     } then {
+        emit("suma", 3); // Lic. en Ciencias de la Computacion
     }
 }
 
@@ -131,7 +159,8 @@ rule Q3A5 {
     when {
         q: Question (q.id == 2 && q.ans == 5);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("saca", 4); // Ing. Civil
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
     }
 }
 
@@ -140,8 +169,10 @@ rule Q4A1 {
     when {
         q: Question (q.id == 3 && q.ans == 1);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sacar", 3); // Lic. en Ciencias de la Computacion
+        emit("sacar", 5); // Ing. Electronica
     }
 }
 
@@ -149,9 +180,11 @@ rule Q4A2 {
     when {
         q: Question (q.id == 3 && q.ans == 2);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 2);
-        emit("respuesta", 4); // Ing. Civil
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 2);
+        emit("sumar", 4); // Ing. Civil
+        emit("sacar", 3); // Lic. en Ciencias de la Computacion
+        emit("sacar", 5); // Ing. Electronica
     }
 }
 
@@ -159,8 +192,10 @@ rule Q4A3 {
     when {
         q: Question (q.id == 3 && q.ans == 3);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("restar", 3); // Lic. en Ciencias de la Computacion
+        emit("restar", 5); // Ing. Electronica
     }
 }
 
@@ -168,7 +203,7 @@ rule Q4A4 {
     when {
         q: Question (q.id == 3 && q.ans == 4);
     } then {
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -176,8 +211,11 @@ rule Q4A5 {
     when {
         q: Question (q.id == 3 && q.ans == 5);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 5); // Ing. Electronica
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("restar", 2);
     }
 }
 
@@ -186,7 +224,12 @@ rule Q5A1 {
     when {
         q: Question (q.id == 4 && q.ans == 1);
     } then {
-        emit("respuesta", 4); // Ing. Civil
+        emit("sacar", 3); // Lic. en Ciencias de la Computacion
+        emit("resta", 5); // Ing. Electronica
+        emit("resta", 2); // Lic. en Quimica
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("sumar", 4); // Ing. Civil
     }
 }
 
@@ -194,9 +237,10 @@ rule Q5A2 {
     when {
         q: Question (q.id == 4 && q.ans == 2);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 4); // Ing. Civil
-        emit("respuesta", 5); // Ing. Electronica
+        emit("resta", 3); // Lic. en Ciencias de la Computacion
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sumar", 4); // Ing. Civil
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -204,7 +248,9 @@ rule Q5A3 {
     when {
         q: Question (q.id == 4 && q.ans == 3);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
+        emit("resta", 3); // Lic. en Ciencias de la Computacion
+        emit("sacar", 4); // Ing. Civil
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
     }
 }
 
@@ -212,7 +258,8 @@ rule Q5A4 {
     when {
         q: Question (q.id == 4 && q.ans == 4);
     } then {
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
     }
 }
 
@@ -220,7 +267,9 @@ rule Q5A5 {
     when {
         q: Question (q.id == 4 && q.ans == 5);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sacar", 4); // Ing. Civil
     }
 }
 
@@ -229,8 +278,11 @@ rule Q6A1 {
     when {
         q: Question (q.id == 5 && q.ans == 1);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("sacar", 2); // Lic. en Quimica
+        emit("sumar", 5); // Ing. Electronica
+        emit("sumar", 4); // Ing. Civil
     }
 }
 
@@ -238,8 +290,10 @@ rule Q6A2 {
     when {
         q: Question (q.id == 5 && q.ans == 2);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("sacar", 2); // Lic. en Quimica
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -247,10 +301,10 @@ rule Q6A3 {
     when {
         q: Question (q.id == 5 && q.ans == 3);
     } then {
-        emit("respuesta", 2);
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 4); // Ing. Civil
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sumar", 2);
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -258,8 +312,9 @@ rule Q6A4 {
     when {
         q: Question (q.id == 5 && q.ans == 4);
     } then {
-        emit("respuesta", 1); // Lic. en Fisica
-        emit("respuesta", 4); // Ing. Civil
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sumar", 2); // Lic. en Quimica
     }
 }
 
@@ -267,7 +322,10 @@ rule Q6A5 {
     when {
         q: Question (q.id == 5 && q.ans == 5);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
+        emit("saca", 4); // Ing. Civil
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
+        emit("sumar", 2); // Lic. en Quimica
     }
 }
 
@@ -276,8 +334,10 @@ rule Q7A1 {
     when {
         q: Question (q.id == 6 && q.ans == 1);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -285,8 +345,10 @@ rule Q7A2 {
     when {
         q: Question (q.id == 6 && q.ans == 2);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 4); // Ing. Civil
+        emit("sacar", 0); // Lic. en Matematica
+        emit("sacar", 1); // Lic. en Fisica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 4); // Ing. Civil
     }
 }
 
@@ -294,8 +356,10 @@ rule Q7A3 {
     when {
         q: Question (q.id == 6 && q.ans == 3);
     } then {
-        emit("respuesta", 3); // Lic. en Ciencias de la Computacion
-        emit("respuesta", 5); // Ing. Electronica
+        emit("restar", 0); // Lic. en Matematica
+        emit("restar", 1); // Lic. en Fisica
+        emit("sumar", 3); // Lic. en Ciencias de la Computacion
+        emit("sumar", 5); // Ing. Electronica
     }
 }
 
@@ -303,8 +367,8 @@ rule Q7A4 {
     when {
         q: Question (q.id == 6 && q.ans == 4);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
     }
 }
 
@@ -312,7 +376,7 @@ rule Q7A5 {
     when {
         q: Question (q.id == 6 && q.ans == 5);
     } then {
-        emit("respuesta", 0); // Lic. en Matematica
-        emit("respuesta", 1); // Lic. en Fisica
+        emit("sumar", 0); // Lic. en Matematica
+        emit("sumar", 1); // Lic. en Fisica
     }
 }

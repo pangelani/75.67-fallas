@@ -1,3 +1,26 @@
+var preguntasPensamientoLateral = [
+"Un hombre construye una casa rectangular, con todas las paredes mirando al sur, luego ve un oso. ¿De que color?",
+"Algunos meses tienen 31 días, otros solo 30. ¿Cuantos tienen 28 días?",
+"Dos indios americanos, uno niño y otro adulto, están sentados en un tronco, el indiecito es hijo del adulto pero el adulto no es padre del indio pequeño. ¿Cómo es posible?",
+"Un cliente se sobresaltó al encontrar una mosca en su café. Pidió al camarero que le trajese una nueva taza. Tras tomar un sorbo, el cliente dijo: - \"Esta es la misma taza de café que tenía antes!\" - ¿Cómo lo supo?",
+"Si un hombre cava un hoyo en una hora y dos hombres cavan dos hoyos en dos horas. ¿Cuanto tardará un hombre en cavar medio hoyo? ",
+"Está corriendo en una competencia, pasa al que se encuentra segundo. ¿Cuál es su nueva posición?",
+"Un hombre yace muerto en un campo. A su lado hay un paquete sin abrir. No hay nadie más en el campo. ¿Como murio?",
+"Hay tres interruptores afuera de un cuarto que está cerrado con llave. Adentro del cuarto hay tres lámparas. Usted puede encender y apagar los interruptores cuantas veces quiera, siempre y cuando la puerta del cuarto permanezca cerrada. Entonces, usted debe entrar una sola vez al cuarto y determinar cual interruptor le corresponde a cada lámpara.",
+"¿Cómo podremos disponer 9 bolas en 4 cajas de forma que cada una tenga un número impar de bolas y distinto del de cada una de las otras tres?",
+"Nombre tres días consecutivos sin utilizar las palabras Martes, Jueves y Sábado.",
+"Sumando 3 cifras iguales obtengo como resultado 60 pero.. no uso el 20 ¿Cómo hago?",
+"¿Qué números siguen y por qué? 1 — 2 — 4 — 5 — 8 — 11 –12 — 14 — … — … — …",
+"Un taxista recogió a una señora que no paraba de hablar. Como no tenía ganas de entrar en conversación simuló ser sordo y mudo señalando su boca y oídos para indicar que no podía hablar ni oír. Cuando llego al destino apunto al taxímetro para indicar cuánto debía pagarle. La pasajera lo hizo y se bajó. En ese momento se dió cuenta de que el taxista no podía ser sordomudo.",
+"Un hombre entra en un bar y pide al camarero un vaso de agua. El camarero de repente saca una pistola y le apunta. El hombre se sorprende pero después le da las gracias y se marcha.",
+"Un joven por salir de prisa a encontrarse con sus amigos dejó olvidada la licencia de conducir. Una vez en la calle no se detuvo en la luz roja y siguió por una vía de sentido contrario. Todo esto fue observado por un policía de transito quien no hizo el menor intento para impedírselo o para citarlo. ¿Por qué?",
+"Un día José celebra su cumpleaños. Dos días más tarde su hermano gemelo mayor, Santiago, celebra su cumpleaños.¿Cómo es posible esto?",
+"En una línea de ferrocaril, el tendido tiene doble vía excepto en un túnel, que no es lo bastante ancho para acomodar ambas. Por ello, en el túnel, la línea es de vía simple. Una tarde, entró un ten en el túnel marchando en un sentido, y otro tren en el mismo túnel, pero en sentido contrario. Ambos iban a toda velocidad; y sin embargo no llegaron a colisionar. Explíquelo.",
+"Un pastor Tenia que crusar un rio, Para hacerlo Dispone de un pequeño barco. El pastor lleva con el Un Lobo, Una Oveja y Una Lechuga,[El barco puedo portar a el y a una cosa mas] Si el lobo se que da con la Oveja solos Se la come, Si la oveja se queda con la lechuga, Se la come ¿Cómo hace el pastor para pasar las tres cosas que lleva sanas y salvas?",
+"Un hombre estaba en su habitacion Leyendo un libro, En eso, su esposa le apaga la luz. Sin embargo, el hombre sigue leyendo ¿Cómo es posible?",
+"Un prisionero esta encerrado en una celda que tiene dos puertas, una conduce a la muerte y la otra a la libertad. Cada puerta esta custodiada por un vigilante, el prisionero sabe que uno de ellos siempre dice la verdad, y el otro siempre miente. Para elegir la puerta por la que pasara solo puede hacer una pregunta a uno solo de los vigilantes."
+];
+
 var carreras =[
     { id: 0, nombre: "Licenciatura en matemática", descripcion: "El licenciado en Matemática es un profesional con nivel y entrenamiento de excelencia. De acuerdo a su interés, los licenciados en Matemática están en condiciones de: <br>-Seguir estudios de Doctorado y dedicarse a la investigación a nivel internacional<br>-Ejercer la docencia universitaria en otras carreras que requieran cursos de matemática<br>-Insertarse laboralmente en la actividad privada (industrias y empresas consultoras, fundamentalmente) y en institutos de investigación o desarrollo tecnológico<br>-Trabajar en grupos interdisciplinarios con graduados de las distintas carreras de nuestra facultad"},
     { id: 1, nombre: "Licenciatura en física", descripcion: "Los Licenciados en Ciencias Físicas pueden ejercer su profesión tanto en la actividad pública como en la privada. La actividad docente es destacada en el ámbito universitario como también en el de la enseñanza secundaria. La actividad de investigación se desarrolla principalmente en las facultades e institutos de ciencias de todo el país y en menor grado en la industria privada. "},
@@ -10,6 +33,7 @@ var carreras =[
 var preguntas = [
     {
         pregunta : "Capacidad lógico/matemático",
+        descripcion: "Capacidad para utilizar los números de una manera efectiva y de razonar adecuadamente empleando el pensamiento lógico, siendo esta última capacidad  un proceso cognitivo que conlleva la  selección de una respuesta de adaptación al medio, basada en análisis y comparación de los diversos elementos que intervienen y forman un determinado contexto. El experto evaluará la capacidad del jóven para resolver problemas de lógica-matemática.",
         respuestas : [
             "Dificultad excesiva en ejercicios simples",
             "Dificultad media con resolución del ejercicio satisfactoria.",
@@ -20,6 +44,7 @@ var preguntas = [
     },
     {
         pregunta : "Flexibilidad",
+        descripcion: "La teoría de flexibilidad cognitiva enfatiza la posibilidad del traslado de conocimiento y habilidades más allá de su situación de aprendizaje inicial debido a que se extrapola la información anterior y se observa desde varias perspectivas novedosas, logrando utilizar el conocimiento o información en momentos posteriores. Los tests relacionados con esta teoría, tratan de cuantificar la capacidad para concentrarse atendiendo a la vez a varias condiciones cambiantes en el entorno.",
         respuestas : [
             "Miedo a las situaciones que no puede controlar",
             "Reticencia al cambio con aceptación si es inminente",
@@ -30,6 +55,7 @@ var preguntas = [
     },
     {
         pregunta : "Pensamiento lateral/Creatividad",
+        descripcion: "El pensamiento vertical (lógico, analítico, convergente y deductivo) utiliza la información por su valor intrínseco, para llegar eventualmente a una solución dentro de los modelos tradicionales existentes. En cambio, el pensamiento lateral (creativo, imaginativo, divergente e inductivo) no utiliza la información en sí misma sino como un medio para provocar una disgregación de los modelos y su reestructuración perspicaz en ideas creativas. En este <a href=\"pensamientoLateral\">enlace</a> se presenta un set de preguntas para evaluar la estructuración de los razonamientos del jóven entrevistado",
         respuestas : [
             "1-4 respuestas correctas",
             "5-8 respuestas correctas",
@@ -40,6 +66,7 @@ var preguntas = [
     },
     {
         pregunta : "Interés por la tecnología",
+        descripcion: "En esta sección, se intenta conocer los interéses del jóven en materia tecnológica, debido a que si existe una pasión por los aparatos eléctricos/electrónicos, el querer entender como funcionan para satisfacer la curiosidad propia, puede resultar determinante en la elección de una carrera que cumpla con las expectativas del jóven interesado.",
         respuestas : [
             "Reticencia alta",
             "Reticencia media",
@@ -50,6 +77,7 @@ var preguntas = [
     },
     {
         pregunta : "Test de Wason",
+        descripcion: "El Test de Wason consiste en el siguiente ejercicio deductivo: A usted le muestran un grupo de cuatro cartas en una mesa. Cada una tiene un úmero de un lado y un color del otro. Las caras visibles de las cartas muestran 3, 8, rojo y marrón. ¿A qué dos cartas debería dar vuelta para omprobar la veracidad de la proposición que si una carta muestra un número par por un lado, entonces la cara opuesta muestra un color primario?. Se evaluará el razonamiento y análisis que realiza el paciente para resolver el problema, permitiendo determinar su capacidad deductiva.",
         respuestas : [
             "No comprende la consigna",
             "Tiempo elevado con necesidad de ayuda",
@@ -60,6 +88,7 @@ var preguntas = [
     },
     {
         pregunta : "Capacidad de análisis",
+        descripcion: "Tener capacidad para el análisis y el razonamiento supone mostrar destreza a la hora de extraer conclusiones sobre datos acontecidos, ser capaz de fragmentar y descomponer procesos complejos en sus componentes generales y específicos y de definir todas las tareas y estructuras necesarias para la resolución de problemas. El experto aplicando su conocimiento y herramientas deberá evaluar la capacidad de análisis del paciente.",
         respuestas : [
             "Bajo",
             "El análisis presenta falencias",
@@ -70,6 +99,7 @@ var preguntas = [
     },
     {
         pregunta : "Afinidad con la matemática",
+        descripcion: "La matemática, apodada \"La madre de las Ciencias\", establece un lenguaje común entre todas las carreras que analizamos en este software, algunas la emplean en mayor, y otras en menor medida. Varios matemáticos a lo largo de la historia han comparado la majestuosidad de dicha disciplina con la música, la pintura y otras artes. La destreza y más aún, el sentimiento del jóven para con la misma, es un factor determinante a la hora de elegir una carrera.",
         respuestas : [
             "Intenta evitarla debido a que le cuesta comprenderla",
             "Intenta evitarla pero no tiene problema en lidiar con ella",
@@ -116,7 +146,7 @@ Pregunta.prototype.siguiente = function() {
 
 function TestModel() {
     this.preguntas = new Array(6);
-    this.posiblesCarreras = carreras.splice(0);
+    this.posiblesCarreras = carreras.slice();
     this.resultado = undefined;
 }
 
@@ -126,3 +156,4 @@ module.exports.preguntasCount = preguntas.length;
 module.exports.TestModel = TestModel;
 module.exports.Carreras = carreras;
 module.exports.Preguntas = preguntas;
+module.exports.PreguntasPensamientoLateral = preguntasPensamientoLateral;

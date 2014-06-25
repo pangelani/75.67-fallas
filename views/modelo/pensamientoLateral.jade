@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+    .page-header
+        h2 Set de preguntas de pensamiento lateral y creatividad
+    .col-md-11.col-centered
+        ol
+            - for (var i = 0; i < preguntas.length; i++)
+                li= preguntas[i]
+                br

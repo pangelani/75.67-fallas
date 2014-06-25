@@ -4,6 +4,7 @@ module.exports = function(app, log) {
     var preguntasCount = require("../models/modelo").preguntasCount;
     var Carreras = require("../models/modelo").Carreras;
     var Preguntas = require("../models/modelo").Preguntas;
+    var PreguntasPensamientoLateral = require("../models/modelo").PreguntasPensamientoLateral;
     var nools = require("nools");
     var flow = nools.compile("flow/basic.nools", {
         scope: {
@@ -35,8 +36,17 @@ module.exports = function(app, log) {
         });
     });
 
+    app.get('/pensamientoLateral', function(req, res){
+        res.render('modelo/pensamientoLateral', {
+            appName     : "75.67",
+            pageTitle   : "75.67 - Preguntas",
+            preguntas   : PreguntasPensamientoLateral
+        });
+    });
+
     app.get('/comenzar', function(req, res){
         req.session.test = new TestModel();
+        console.log(req.session.test);
         res.render('analisis/comenzar', {
             appName     : "75.67",
             pageTitle   : "75.67 - Sistemas Automáticos de Diagnóstico y Detección de Fallas I"
@@ -54,7 +64,7 @@ module.exports = function(app, log) {
 
     app.post('/analisis', function(req, res){
         var pregunta = new Pregunta(req.body.pregunta);
-        pregunta.responder(req.body.respuesta);
+        pregunta.responder(req.body.respuesta + 1);
         ejecutarReglas(req, res, pregunta);
     });
 
@@ -66,6 +76,9 @@ module.exports = function(app, log) {
                 posiblesCarreras.push(req.session.test.posiblesCarreras[i]);
             }
         }
+        posiblesCarreras.sort(function(a, b) {
+            return b.puntos - a.puntos;
+        });
         res.render('analisis/resultado', {
             appName     : "75.67",
             pageTitle   : "75.67 - Resultado",
@@ -80,10 +93,16 @@ module.exports = function(app, log) {
             id : pregunta.id,
             ans : pregunta.respuesta
         }));
-        session.on('respuesta', function(carrera) {
+        session.on('sumar', function(carrera) {
             if (currTest.posiblesCarreras[carrera]) {
-                currTest.posiblesCarreras[carrera].dejar = true;
+                currTest.posiblesCarreras[carrera].puntos = (currTest.posiblesCarreras[carrera].puntos) ? currTest.posiblesCarreras[carrera].puntos + 1 : 1;
             }
+        }).on('restar', function(carrera) {
+            if (currTest.posiblesCarreras[carrera]) {
+                currTest.posiblesCarreras[carrera].puntos = (currTest.posiblesCarreras[carrera].puntos) ? currTest.posiblesCarreras[carrera].puntos - 1 : -1;
+            }
+        }).on('sacar', function(carrera) {
+            currTest.posiblesCarreras[carrera] = null;
         }).match(function(err){
             if(err){
                 currTest.posiblesCarreras = [];
@@ -93,12 +112,8 @@ module.exports = function(app, log) {
             var hayPosibles = false;
             for (var i = 0; i < currTest.posiblesCarreras.length; i++) {
                 if (currTest.posiblesCarreras[i]) {
-                    if (!currTest.posiblesCarreras[i].dejar) {
-                        currTest.posiblesCarreras[i] = null;
-                    } else {
-                        currTest.posiblesCarreras[i].dejar = false;
-                        hayPosibles = true;
-                    }
+                    hayPosibles = true;
+                    break;
                 }
             }
             req.session.test = currTest;
