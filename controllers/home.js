@@ -46,7 +46,6 @@ module.exports = function(app, log) {
 
     app.get('/comenzar', function(req, res){
         req.session.test = new TestModel();
-        console.log(req.session.test);
         res.render('analisis/comenzar', {
             appName     : "75.67",
             pageTitle   : "75.67 - Sistemas Automáticos de Diagnóstico y Detección de Fallas I"
@@ -70,7 +69,6 @@ module.exports = function(app, log) {
 
     app.get('/resultado', function(req, res){
         var posiblesCarreras = [];
-        log.debug("resultado");
         for (var i = 0; i < req.session.test.posiblesCarreras.length; i++) {
             if (req.session.test.posiblesCarreras[i]) {
                 posiblesCarreras.push(req.session.test.posiblesCarreras[i]);
@@ -119,6 +117,7 @@ module.exports = function(app, log) {
             req.session.test = currTest;
             var siguiente = pregunta.siguiente();
             if (siguiente && hayPosibles) {
+                log.info(siguiente)
                 res.render('analisis/analisis', {
                     appName     : "75.67",
                     pageTitle   : "75.67 - Hacer test",

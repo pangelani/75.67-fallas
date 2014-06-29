@@ -3,6 +3,7 @@ extends ../layout
 block content
     .page-header
         h2 #{pregunta.pregunta}
+        small !{pregunta.descripcion}
     .col-md-11.col-centered
         form(role="form", method="post")
             input(type="hidden", name="pregunta", value="#{pregunta.id}")

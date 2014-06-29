@@ -113,6 +113,7 @@ var preguntas = [
 function Pregunta(id) {
     var pregunta = preguntas[parseInt(id)];
     this.pregunta = pregunta.pregunta;
+    this.descripcion = pregunta.descripcion;
     this.id = parseInt(id);
     this.respuestas = pregunta.respuestas;
     this.respuesta = undefined;
