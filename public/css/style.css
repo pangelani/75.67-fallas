@@ -15,3 +15,8 @@
 .btn-primary:focus {
 	background-color: #398439;
 }
+
+.col-right{
+    float: right;
+    margin: 0 auto;
+}

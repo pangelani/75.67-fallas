@@ -13,4 +13,7 @@ block content
                 .list-group
                     a.list-group-item(href="/carreras/\#carrera_#{resultado[i].id}")
                         h4.list-group-item-heading
-                            | #{resultado[i].nombre} #{resultado[i].puntos / totalPuntos} 
+                            span
+                                | #{resultado[i].nombre}
+                            span.col-right
+                                | #{resultado[i].puntos} / 7 pts

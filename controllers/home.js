@@ -63,16 +63,14 @@ module.exports = function(app, log) {
 
     app.post('/analisis', function(req, res){
         var pregunta = new Pregunta(req.body.pregunta);
-        pregunta.responder(req.body.respuesta + 1);
+        pregunta.responder(parseInt(req.body.respuesta) + 1);
         ejecutarReglas(req, res, pregunta);
     });
 
     app.get('/resultado', function(req, res){
         var posiblesCarreras = [];
-		var total = 0;
         for (var i = 0; i < req.session.test.posiblesCarreras.length; i++) {
             if (req.session.test.posiblesCarreras[i] && req.session.test.posiblesCarreras[i].puntos > 0) {
-				total += req.session.test.posiblesCarreras[i].puntos;
                 posiblesCarreras.push(req.session.test.posiblesCarreras[i]);
             }
         }
@@ -82,8 +80,7 @@ module.exports = function(app, log) {
         res.render('analisis/resultado', {
             appName     : "75.67",
             pageTitle   : "75.67 - Resultado",
-            resultado   : posiblesCarreras,
-			totalPuntos : total
+            resultado   : posiblesCarreras
         });
     });
 
@@ -95,9 +92,8 @@ module.exports = function(app, log) {
             ans : pregunta.respuesta
         }));
         session.on('sumar', function(carrera) {
-   			if (currTest.posiblesCarreras[carrera]) {
-                currTest.posiblesCarreras[carrera].puntos = (currTest.posiblesCarreras[carrera].puntos) ? currTest.posiblesCarreras[carrera].puntos + 5 : 1;
-				 
+            if (currTest.posiblesCarreras[carrera]) {
+                currTest.posiblesCarreras[carrera].puntos = (currTest.posiblesCarreras[carrera].puntos) ? currTest.posiblesCarreras[carrera].puntos + 1 : 1;
             }
         }).on('restar', function(carrera) {
             if (currTest.posiblesCarreras[carrera]) {
